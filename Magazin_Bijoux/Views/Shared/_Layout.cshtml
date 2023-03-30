@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Magazin_Bijoux</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 pink-bg" style="opacity:0.5">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="MOFT-LOGO.png" class="img-fluid"/></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1 flex-row-reverse">
+                        <li class="nav-item">
+                            <a class="nav-link text-light"><img src="~/white-shopping-cart-icon.jpg" class="img-fluid cart_icon" /></a>
+                        </li>
+                        <partial name="_LoginPartial" />
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">Despre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Shop">Magazin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted pink-bg">
+        <div class="container">
+            <div >
+                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
+                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Aviz">Aviz juridic</a>
+            </div>
+            <div>
+                <img src="~/Icons/mail-message-icon.png"/>
+                <div>
+                    <a class="nav-link text-light">MOFT-BIJOUX@gmail.com</a>
+                    <a class="nav-link text-light">+353-989-898-98</a>
+                </div>
+                    <a class="nav-link text-light flex-fill" href="https://www.facebook.com">@*<img src="~/Icons/Facebook1024.png"/>*@</a>
+                    <a class="nav-link text-light" href="https://www.instagram.com/">@*<img src="~/Icons/Instagram-Logo.wine.png"/>*@</a>
+                </div>
+            </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
