@@ -23,7 +23,11 @@ namespace Magazin_Bijoux.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult LegalPage()
         {
             return View();
         }
