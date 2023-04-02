@@ -9,58 +9,100 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 pink-bg" style="opacity:0.5">
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 pink-bg" style="opacity:0.5">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="MOFT-LOGO.png" class="img-fluid"/></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1 flex-row-reverse">
-                        <li class="nav-item">
-                            <a class="nav-link text-light"><img src="~/white-shopping-cart-icon.jpg" class="img-fluid cart_icon" /></a>
-                        </li>
-                        <partial name="_LoginPartial" />
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">Despre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Shop">Magazin</a>
-                        </li>
-                    </ul>
-                </div>
+                       <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                       <img src="MOFT-LOGO.png" class="img-fluid"/></a>
+                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                               aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
+                       </button>
+                       <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                           <ul class="navbar-nav flex-grow-1 flex-row-reverse">
+                               <li class="nav-item">
+                                   <a class="nav-link text-light"><img src="~/white-shopping-cart-icon.jpg" class="img-fluid cart_icon" /></a>
+                               </li>
+                               <partial name="_LoginPartial" />
+                               <li class="nav-item">
+                                   <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">Despre</a>
+                               </li>
+                               <li class="nav-item">
+                                   <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Shop">Magazin</a>
+                               </li>
+                           </ul>
+                       </div>
+                   </div>
+               </nav>*@
+        <div class="header__logo">
+            <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/MOFT-LOGO.png" alt="logo" /></a>
+        </div>
+        <div class="header__nav">
+            <partial name="_LoginPartial" />
+            <a asp-area="" asp-controller="Home" asp-action="Shop">Magazin</a>
+            <a asp-area="" asp-controller="Home" asp-action="About">Despre</a>
+            <div class="header__cart">
+                <img src="~/Icons/white-shopping-cart-icon.jpg" alt="cart" />
             </div>
-        </nav>
+        </div>
     </header>
+    <div class="header__image">
+        <img src="~/Header_BG.png" alt="Header" />
+    </div>
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted pink-bg">
-        <div class="container">
-            <ul class="navbar-nav flex-grow-1 flex-row">
-                <li class="nav-item flex-column">
-                    <div class="flex-row">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Aviz">Aviz juridic</a>
-                    </div>
-                </li>
-                <li class="nav-item flex-column">
-                    <div>
-                        @*<img src="~/Icons/mail-message-icon.png"/>*@
-                        <div>
-                            <a class="nav-link text-light flex-column">MOFT-BIJOUX@gmail.com</a>
-                            <a class="nav-link text-light flex-column">+353-989-898-98</a>
+    @*<footer class="border-top footer text-muted pink-bg">
+            <div class="container">
+                <ul class="navbar-nav flex-grow-1 flex-row">
+                    <li class="nav-item flex-column">
+                        <div class="flex-row">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
+                            <a class="nav-link text-light" public IActionResult About()
+            {
+                return View();
+            }>Aviz juridic</a>
                         </div>
-                        <a class="nav-link text-light flex-fill" href="https://www.facebook.com">@*<img src="~/Icons/Facebook1024.png"/>*@</a>
-                        <a class="nav-link text-light" href="https://www.instagram.com/">@*<img src="~/Icons/Instagram-Logo.wine.png"/>*@</a>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                    <li class="nav-item flex-column">
+                        <div>
+                            <img src="~/Icons/mail-message-icon.png" />
+                            <div>
+                                <a class="nav-link text-light flex-column">MOFT-BIJOUX@gmail.com</a>
+                                <a class="nav-link text-light flex-column">+353-989-898-98</a>
+                            </div>
+                            <a class="nav-link text-light flex-fill" href="https://www.facebook.com"><img src="~/Icons/Facebook1024.png" /></a>
+                            <a class="nav-link text-light" href="https://www.instagram.com/"><img src="~/Icons/Instagram-Logo.wine.png" /></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </footer>*@
+    <footer>
+        <div class="footer__left">
+            <a asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
+            <a asp-area="" asp-controller="Home" asp-action="LegalPage">Aviz juridic</a>
+        </div>
+        <div class="footer__right">
+            <div class="footer__phone">
+                <img src="~/Icons/CallIcon.png" alt="phone" />
+            </div>
+            <div class="footer__contacts">
+                <div>MOFT-BIJOUX@gmail.com</div>
+                <div>+353-989-898-98</div>
+            </div>
+            <div class="footer__links">
+                <div class="footer__link">
+                    <a href="https://www.facebook.com"><img src="~/Icons/Facebook1024.png" alt="facebook" /></a>
+                </div>
+                <div class="footer__link">
+                    <a href="https://www.instagram.com/"><img src="~/Icons/Instagram-Logo.wine.png" alt="instagram.png" /></a>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

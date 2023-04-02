@@ -1,14 +1,68 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div id="carousel">
-
-</div>
-<div>
-    <image></image>
-    <div>
-        <p></p>
-        <a></a>
+<head>
+    <link rel="stylesheet" href="~/css/home.css" />
+</head>
+<section class="home__showcase">
+    <div class="home__arrow">
+        <img src="~/Icons/Arrow_left.png" alt="leftArrow" />
     </div>
-</div>
+    <div class="home__items">
+        <div class="home__card">
+            <div class="card__image">
+                <img src="~/Product_img216x288/Product216x288_1.png" alt="cardImage.png" />
+            </div>
+            <div class="card__text">Boucles d’oreilles Lis</div>
+            <div class="card__text">37$</div>
+            <button class="card__button">Adaugă în coș</button>
+        </div>
+
+        <div class="home__card">
+            <div class="card__image">
+                <img src="~/Product_img216x288/Product216x288_2.png" alt="cardImage.png" />
+            </div>
+            <div class="card__text">Boucles d’oreilles Lis</div>
+            <div class="card__text">62$</div>
+            <button class="card__button">Adaugă în coș</button>
+        </div>
+        <div class="home__card">
+            <div class="card__image">
+                <img src="~/Product_img216x288/Product216x288_3.png" alt="cardImage.png" />
+            </div>
+            <div class="card__text">Boucles d’oreilles Lis</div>
+            <div class="card__text">31$</div>
+            <button class="card__button">Adaugă în coș</button>
+        </div>
+        <div class="home__card">
+            <div class="card__image">
+                <img src="~/Product_img216x288/Product216x288_4.png" alt="cardImage.png" />
+            </div>
+            <div class="card__text">Boucles d’oreilles Lis</div>
+            <div class="card__text">73$</div>
+            <button class="card__button">Adaugă în coș</button>
+        </div>
+
+    </div>
+    <div class="home__arrow">
+        <img src="~/Icons/Arrow_right.png" alt="rightArrow.png" />
+    </div>
+</section>
+
+<section class="home__info">
+    <div class="info__container">
+        <div class="info__text">
+            Noi oferim o gamă largă de bijuterii de înaltă calitate, potrivite
+            gusturilor și stilului dvs. Indiferent de ceea ce căutați, suntem
+            siguri că le veți purta. De la cele mai vândute colecții la articole
+            în ediție limitată, vă garantăm că veți profita la maximum de
+            achiziția dvs. Este întotdeauna un moment bun pentru a vă răsfăța cu
+            ceva special pentru dvs. sau cei dragi.
+        </div>
+
+        <button class="info__button">Cumpără Acum</button>
+    </div>
+    <div class="info__image">
+        <img src="~/Description_Cut.png" alt="footer.jpg" />
+    </div>
+</section>
