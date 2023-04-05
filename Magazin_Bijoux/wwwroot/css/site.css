@@ -10,19 +10,23 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: white;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #C08E9D;
+    border-color: #C08E9D;
 }
+    .btn-primary:hover {
+        background-color: #ad838f;
+        border-color: #C08E9D;
+    }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #C08E9D;
+    border-color: #C08E9D;
 }
 
 /* Sticky footer styles
@@ -84,6 +88,10 @@ body {
     }
 }
 
+.standart_black {
+    color:#212529 !important;
+}
+
 img {
     width: 100%;
     height: 100%;
@@ -139,13 +147,13 @@ header {
 
 .header__image{
     width: 100%;
-    height: 412px;
+    height: 312px;
 }
 
 
 @media screen and (max-width: 620px) {
     header{
-        width: calc(100% - 20px);
+        width: calc(100%);
         padding: 0 10px;
     }
     .header__logo{
@@ -228,7 +236,7 @@ footer {
 
 @media screen and (max-width: 620px) {
     footer {
-        width: calc(100% - 40px);
+        width: calc(100%);
         padding: 20px 20px;
     }
 
@@ -252,3 +260,17 @@ footer {
         font-size: 16px;
     }
 }
+.btn-link{
+    color: white;
+}
+
+.white_link {
+    text-decoration: none;
+    color: white !important;
+    font-size: 20px;
+    font-weight: 400;
+}
+    .white_link:hover {
+        color: white !important;
+        text-decoration: underline;
+    }
