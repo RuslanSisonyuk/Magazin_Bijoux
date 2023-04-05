@@ -1,0 +1,82 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic);
+@import url(https://fonts.googleapis.com/css?family=Oranienbaum:regular);
+
+
+/* ================================================================= */
+/* MAIN CONTENT */
+
+main{
+    font-family: 'Oranienbaum';
+    color: black;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h2{
+    margin: 0;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+
+}
+p{
+    font-size: 20px;
+    margin: 0;
+}
+
+h3{
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.text__block{
+    margin: 40px 0;
+}
+
+.text__wrapper{
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: 210px 1fr;
+}
+.text__wrapper h3{
+    text-align: center;
+}
+
+.text__container{
+    padding: 0 40px; 
+}
+
+@media screen and (max-width: 620px){
+    .text__wrapper{
+        margin: 20px 0;
+        grid-template-columns: 170px 1fr;
+
+    }
+    .text__container{
+        padding: 0 0px; 
+    }
+
+    .text__wrapper p{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 520px){
+    .text__wrapper{
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+    }
+    .text__container{
+        padding: 0 0px; 
+    }
+
+    .text__wrapper p{
+        font-size: 16px;
+    }
+}

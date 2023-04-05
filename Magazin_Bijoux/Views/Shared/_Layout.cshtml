@@ -38,8 +38,8 @@
         </div>
         <div class="header__nav">
             <partial name="_LoginPartial" />
-            <a asp-area="" asp-controller="Home" asp-action="Shop">Magazin</a>
-            <a asp-area="" asp-controller="Home" asp-action="About">Despre</a>
+            <a asp-area="" asp-controller="Home" asp-action="Shop">Shop</a>
+            <a asp-area="" asp-controller="Home" asp-action="About">About</a>
             <div class="header__cart">
                 <img src="~/Icons/white-shopping-cart-icon.jpg" alt="cart" />
             </div>
@@ -50,7 +50,7 @@
     </div>
 
 
-    <div class="container">
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -84,8 +84,8 @@
         </footer>*@
     <footer>
         <div class="footer__left">
-            <a asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
-            <a asp-area="" asp-controller="Home" asp-action="LegalPage">Aviz juridic</a>
+            <a class="white_link" asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
+            <a class="white_link" asp-area="" asp-controller="Home" asp-action="LegalPage">Aviz juridic</a>
         </div>
         <div class="footer__right">
             <div class="footer__phone">
