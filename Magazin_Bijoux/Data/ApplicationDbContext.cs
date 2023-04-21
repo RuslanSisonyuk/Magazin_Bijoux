@@ -14,5 +14,7 @@ namespace Magazin_Bijoux.Data
         {
         }
         public DbSet<Magazin_Bijoux.Models.Product> Product { get; set; }
+        public DbSet<Magazin_Bijoux.Models.Category> Category { get; set; }
+        public DbSet<Magazin_Bijoux.Models.Cart> Cart { get; set; }
     }
 }

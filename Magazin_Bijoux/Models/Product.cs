@@ -11,17 +11,18 @@ namespace Magazin_Bijoux.Models
 
         [Required]
         [Display(Name = "Denumire")]
-        [RegularExpression(@"^[A-za-z\s]{2,20}", ErrorMessage = "Câmpul Denumire poate conține numai litere și spații.")]
+        [RegularExpression(@"^[A-za-z\s]{2,40}", ErrorMessage = "Câmpul Denumire poate conține numai litere și spații.")]
         public string name { get; set; }
 
         [Required]
         [Display(Name = "Detalii")]
         [RegularExpression(@"^[A-Za-z0-9\s]*$", ErrorMessage = "Câmpul Email este invalid")]
         public string details { get; set; }
+        public string category { get; set; }
 
         [Required]
         [Display(Name = "Mărime")]
-        [RegularExpression(@"^[0-9]{1,3} [\.]? [0-9]{0,3} [a-z]{0,2}", ErrorMessage = "Câmpul Mărime trebuie să conțină numere naturale")]
+        [RegularExpression(@"^[0-9]{1,3}[/.]?[0-9]?[a-z]{0,2}", ErrorMessage = "Câmpul Mărime trebuie să conțină numere naturale")]
         public string size { get; set; }
 
         [Required]
@@ -33,5 +34,7 @@ namespace Magazin_Bijoux.Models
         [Display(Name = "Preț")]
         [Range(0, 100000, ErrorMessage = "Prețul admisibil este între 0 și 100000")]
         public float price { get; set; }
+
+        public string imageURL { get; set; }
     }
 }

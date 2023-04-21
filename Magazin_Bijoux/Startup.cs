@@ -58,7 +58,8 @@ namespace Magazin_Bijoux
                 return next();
             });
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(); 
+            //app.UseSession();
 
             app.UseRouting();
 

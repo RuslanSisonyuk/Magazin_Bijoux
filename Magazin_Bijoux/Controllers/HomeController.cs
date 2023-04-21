@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Magazin_Bijoux.Data;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Magazin_Bijoux.Controllers
 {
@@ -13,14 +15,17 @@ namespace Magazin_Bijoux.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
+        private readonly ApplicationDbContext _context;
+        
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Product.ToListAsync());
         }
 
         public IActionResult About()
@@ -31,9 +36,9 @@ namespace Magazin_Bijoux.Controllers
         {
             return View();
         }
-        public IActionResult Shop()
+        public async Task<IActionResult> Shop()
         {
-            return View();
+            return View(await _context.Product.ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

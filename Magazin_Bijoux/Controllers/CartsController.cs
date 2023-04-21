@@ -10,22 +10,22 @@ using Magazin_Bijoux.Models;
 
 namespace Magazin_Bijoux.Controllers
 {
-    public class ProductsController : Controller
+    public class CartsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ProductsController(ApplicationDbContext context)
+        public CartsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Products
+        // GET: Carts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            return View(await _context.Cart.ToListAsync());
         }
 
-        // GET: Products/Details/5
+        // GET: Carts/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Magazin_Bijoux.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (product == null)
+            var cart = await _context.Cart
+                .FirstOrDefaultAsync(m => m.cartId == id);
+            if (cart == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(cart);
         }
 
-        // GET: Products/Create
+        // GET: Carts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Products/Create
+        // POST: Carts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,details,size,color,price,imageURL")] Product product)
+        public async Task<IActionResult> Create([Bind("cartId")] Cart cart)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(cart);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(cart);
         }
 
-        // GET: Products/Edit/5
+        // GET: Carts/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace Magazin_Bijoux.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
-            if (product == null)
+            var cart = await _context.Cart.FindAsync(id);
+            if (cart == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(cart);
         }
 
-        // POST: Products/Edit/5
+        // POST: Carts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("id,name,details,size,color,price,imageURL")] Product product)
+        public async Task<IActionResult> Edit(string id, [Bind("cartId")] Cart cart)
         {
-            if (id != product.id)
+            if (id != cart.cartId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Magazin_Bijoux.Controllers
             {
                 try
                 {
-                    _context.Update(product);
+                    _context.Update(cart);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.id))
+                    if (!CartExists(cart.cartId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace Magazin_Bijoux.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(cart);
         }
 
-        // GET: Products/Delete/5
+        // GET: Carts/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace Magazin_Bijoux.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (product == null)
+            var cart = await _context.Cart
+                .FirstOrDefaultAsync(m => m.cartId == id);
+            if (cart == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(cart);
         }
 
-        // POST: Products/Delete/5
+        // POST: Carts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var product = await _context.Product.FindAsync(id);
-            _context.Product.Remove(product);
+            var cart = await _context.Cart.FindAsync(id);
+            _context.Cart.Remove(cart);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(string id)
+        private bool CartExists(string id)
         {
-            return _context.Product.Any(e => e.id == id);
+            return _context.Cart.Any(e => e.cartId == id);
         }
     }
 }
