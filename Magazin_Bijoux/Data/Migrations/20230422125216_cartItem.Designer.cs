@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Magazin_Bijoux.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230421080224_categoryandcartandproduct")]
-    partial class categoryandcartandproduct
+    [Migration("20230422125216_cartItem")]
+    partial class cartItem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,23 +21,13 @@ namespace Magazin_Bijoux.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Magazin_Bijoux.Models.Cart", b =>
-                {
-                    b.Property<string>("cartId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("cartId");
-
-                    b.ToTable("Cart");
-                });
-
             modelBuilder.Entity("Magazin_Bijoux.Models.CartItem", b =>
                 {
                     b.Property<string>("itemId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("cartId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("dateCreated")
                         .HasColumnType("datetime2");
@@ -49,8 +39,6 @@ namespace Magazin_Bijoux.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("itemId");
-
-                    b.HasIndex("cartId");
 
                     b.HasIndex("productId");
 
@@ -308,10 +296,6 @@ namespace Magazin_Bijoux.Data.Migrations
 
             modelBuilder.Entity("Magazin_Bijoux.Models.CartItem", b =>
                 {
-                    b.HasOne("Magazin_Bijoux.Models.Cart", null)
-                        .WithMany("cartItems")
-                        .HasForeignKey("cartId");
-
                     b.HasOne("Magazin_Bijoux.Models.Product", "product")
                         .WithMany()
                         .HasForeignKey("productId");

@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Magazin_Bijoux.Models;
@@ -65,20 +65,20 @@ namespace Magazin_Bijoux.Logic
 
         public string GetCartId()
         {
-            if (HttpContext.Session.Keys.[CartSessionKey] == null)
+            if (!HttpContext.Items.ContainsKey(CartSessionKey))
             {
                 if (!string.IsNullOrWhiteSpace(HttpContext.User.Identity.Name))
                 {
-                    Session[CartSessionKey] = HttpContext.User.Identity.Name;
+                    HttpContext.Items.Add(CartSessionKey, HttpContext.User.Identity.Name);
                 }
                 else
                 {
                     // Generate a new random GUID using System.Guid class.     
                     Guid tempCartId = Guid.NewGuid();
-                    Session[CartSessionKey] = tempCartId.ToString();
+                    HttpContext.Items.Add(CartSessionKey, tempCartId.ToString());
                 }
             }
-            return Session[CartSessionKey].ToString();
+            return HttpContext.Items[CartSessionKey].ToString();
         }
 
         public List<CartItem> GetCartItems()
@@ -89,4 +89,4 @@ namespace Magazin_Bijoux.Logic
                 c => c.cartId == ShoppingCartId).ToList();
         }
     }
-}*/
+}

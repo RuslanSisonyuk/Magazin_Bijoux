@@ -12,12 +12,14 @@
         @foreach (var item in Model)
         {
             <div class="home__card">
-                <div class="card__image">
+                <a asp-controller="Products" asp-action="Product" asp-route-id="@item.id" class="card__image">
                     <img src="~/Product_img216x288/@Html.DisplayFor(modelItem => item.imageURL)" alt="cardImage.png" />
-                </div>
+                </a>
                 <div class="card__text">@Html.DisplayFor(modelItem => item.name)</div>
                 <div class="card__text">@Html.DisplayFor(modelItem => item.price)</div>
-                <button class="card__button">Add to cart</button>
+                @*<button class="card__button">Add to cart</button>*@
+            <a asp-controller="ShoppingCartActions" asp-action="AddToCart" asp-route-id="@item.id" 
+               class="card__button" style="margin-top:10px;">Add to cart</a>
             </div>
         }
     </div>

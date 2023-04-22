@@ -10,22 +10,23 @@ using Magazin_Bijoux.Models;
 
 namespace Magazin_Bijoux.Controllers
 {
-    public class CartsController : Controller
+    public class CartItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CartsController(ApplicationDbContext context)
+        public CartItemsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Carts
+        // GET: CartItems
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cart.ToListAsync());
+            var applicationDbContext = _context.CartItem.Include(c => c.product);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Carts/Details/5
+        // GET: CartItems/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace Magazin_Bijoux.Controllers
                 return NotFound();
             }
 
-            var cart = await _context.Cart
-                .FirstOrDefaultAsync(m => m.cartId == id);
-            if (cart == null)
+            var cartItem = await _context.CartItem
+                .Include(c => c.product)
+                .FirstOrDefaultAsync(m => m.itemId == id);
+            if (cartItem == null)
             {
                 return NotFound();
             }
 
-            return View(cart);
+            return View(cartItem);
         }
 
-        // GET: Carts/Create
+        // GET: CartItems/Create
         public IActionResult Create()
         {
+            ViewData["productId"] = new SelectList(_context.Product, "id", "id");
             return View();
         }
 
-        // POST: Carts/Create
+        // POST: CartItems/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("cartId")] Cart cart)
+        public async Task<IActionResult> Create([Bind("itemId,cartId,quantity,dateCreated,productId")] CartItem cartItem)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cart);
+                _context.Add(cartItem);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(cart);
+            ViewData["productId"] = new SelectList(_context.Product, "id", "id", cartItem.productId);
+            return View(cartItem);
         }
 
-        // GET: Carts/Edit/5
+        // GET: CartItems/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace Magazin_Bijoux.Controllers
                 return NotFound();
             }
 
-            var cart = await _context.Cart.FindAsync(id);
-            if (cart == null)
+            var cartItem = await _context.CartItem.FindAsync(id);
+            if (cartItem == null)
             {
                 return NotFound();
             }
-            return View(cart);
+            ViewData["productId"] = new SelectList(_context.Product, "id", "id", cartItem.productId);
+            return View(cartItem);
         }
 
-        // POST: Carts/Edit/5
+        // POST: CartItems/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("cartId")] Cart cart)
+        public async Task<IActionResult> Edit(string id, [Bind("itemId,cartId,quantity,dateCreated,productId")] CartItem cartItem)
         {
-            if (id != cart.cartId)
+            if (id != cartItem.itemId)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace Magazin_Bijoux.Controllers
             {
                 try
                 {
-                    _context.Update(cart);
+                    _context.Update(cartItem);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CartExists(cart.cartId))
+                    if (!CartItemExists(cartItem.itemId))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace Magazin_Bijoux.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cart);
+            ViewData["productId"] = new SelectList(_context.Product, "id", "id", cartItem.productId);
+            return View(cartItem);
         }
 
-        // GET: Carts/Delete/5
+        // GET: CartItems/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace Magazin_Bijoux.Controllers
                 return NotFound();
             }
 
-            var cart = await _context.Cart
-                .FirstOrDefaultAsync(m => m.cartId == id);
-            if (cart == null)
+            var cartItem = await _context.CartItem
+                .Include(c => c.product)
+                .FirstOrDefaultAsync(m => m.itemId == id);
+            if (cartItem == null)
             {
                 return NotFound();
             }
 
-            return View(cart);
+            return View(cartItem);
         }
 
-        // POST: Carts/Delete/5
+        // POST: CartItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var cart = await _context.Cart.FindAsync(id);
-            _context.Cart.Remove(cart);
+            var cartItem = await _context.CartItem.FindAsync(id);
+            _context.CartItem.Remove(cartItem);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CartExists(string id)
+        private bool CartItemExists(string id)
         {
-            return _context.Cart.Any(e => e.cartId == id);
+            return _context.CartItem.Any(e => e.itemId == id);
         }
     }
 }
