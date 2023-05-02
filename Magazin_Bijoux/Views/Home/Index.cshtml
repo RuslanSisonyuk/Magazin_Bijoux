@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Magazin_Bijoux.Models.Product>
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Magazin_Bijoux.Models.Product>
+@inject SignInManager<IdentityUser> SignInManager
 
 @{
     ViewData["Title"] = "Home Page";
@@ -11,17 +13,35 @@
         <img src="~/Icons/Arrow_left.png" alt="leftArrow" />
     </div>
     <div class="home__items">
-        @foreach (var item in Model) 
+        @foreach (var item in Model)
         {
-        <div class="home__card">
-            <div class="card__image">
-                <img src="~/Product_img216x288/@Html.DisplayFor(modelItem => item.imageURL)" alt="cardImage.png" />
+            <div class="home__card">
+                <div class="card__image">
+                    <a asp-controller="Products" asp-action="Product" asp-route-id="@item.id" class="card__image">
+                        <img src="~/Product_img216x288/@Html.DisplayFor(modelItem => item.imageURL)" alt="cardImage.png" />
+                    </a>
+                </div>
+                <div class="card__text">@Html.DisplayFor(modelItem => item.name)</div>
+                <div class="card__text">@Html.DisplayFor(modelItem => item.price)</div>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-controller="Products" asp-action="AddToCartAndReturn" asp-route-id="@item.id">
+                        <input type="hidden" name="action" value="Index" />
+                        <input type="hidden" name="controller" value="Home" />
+                        <input type="hidden" name="hasParameter" value="false" />
+                        <div class="form-group">
+                            <input type="submit" value="Add to cart" class="card__button btn btn-primary" />
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <a class="card__button btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Add to Cart</a>
+                    </div>
+                }
             </div>
-            <div class="card__text">@Html.DisplayFor(modelItem => item.name)</div>
-            <div class="card__text">@Html.DisplayFor(modelItem => item.price)</div>
-            <button class="card__button">Add to cart</button>
-        </div>
-        if (item.id.Contains('4')) break;
+            if (item.id.Contains('4')) break;
         }
     </div>
 

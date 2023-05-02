@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Magazin_Bijoux.Models.CartItem>
+
+<head>
+    <link rel="stylesheet" href="~/css/cartBurger.css" />
+</head>
+<nav role="navigation">
+    <div id="menuToggle">
+        <!--
+        A fake / hidden checkbox is used as click reciever,
+        so you can use the :checked selector on it.
+        -->
+        <input type="checkbox" />
+        <div>
+            <div>
+                <ul id="menu">
+                    @foreach (var item in Model)
+                    {
+                        <img src="~/Product_img216x288/@Html.DisplayFor(modelItem => item.product.imageURL)" />
+                        <a href="#">
+                        <li>@Html.DisplayFor(modelItem => item.product.name)</li></a>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    }
+                </ul>
+            </div>
+            <form asp-controller="Home" asp-action="Cart">
+                <div class="form-group">
+                    <input type="submit" value="Go to cart" class="card__button btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>

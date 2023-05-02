@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Magazin_Bijoux.Models.CartItem>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home Page";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<head>
+    <link rel="stylesheet" href="~/css/home.css" />
+</head>
 <table class="table">
     <thead>
         <tr>
@@ -31,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.itemId)
@@ -54,6 +51,6 @@
                 <a asp-action="Delete" asp-route-id="@item.itemId">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

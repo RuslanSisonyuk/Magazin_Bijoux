@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Magazin_Bijoux.Data;
 using Magazin_Bijoux.Models;
 
+
 namespace Magazin_Bijoux.Controllers
 {
     public class ProductsController : Controller
@@ -18,6 +19,7 @@ namespace Magazin_Bijoux.Controllers
         {
             _context = context;
         }
+
 
         // GET: Products
         public async Task<IActionResult> Index()
@@ -42,22 +44,7 @@ namespace Magazin_Bijoux.Controllers
 
             return View(product);
         }
-        public async Task<IActionResult> Product(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
         // GET: Products/Create
         public IActionResult Create()
         {
@@ -164,5 +151,7 @@ namespace Magazin_Bijoux.Controllers
         {
             return _context.Product.Any(e => e.id == id);
         }
+
+
     }
 }
