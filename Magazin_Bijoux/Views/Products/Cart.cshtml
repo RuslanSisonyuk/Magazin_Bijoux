@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Magazin_Bijoux.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <link rel="stylesheet" href="~/css/home.css" />
+</head>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.itemId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cartId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cartId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.product.id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.itemId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.itemId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.itemId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

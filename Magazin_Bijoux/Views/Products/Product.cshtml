@@ -1,10 +1,12 @@
 ﻿@model Magazin_Bijoux.Models.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Html.DisplayFor(model => model.name);
 }
 
-<h1>Details</h1>
+<h1>
+    @Html.DisplayFor(model => model.name)
+</h1>
 
 <div>
     <h4>Product</h4>
@@ -46,6 +48,12 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <form asp-action="AddToCartAndReturn" asp-route-id="@Model.id">
+        <input type="hidden" name="action" value="Product" />
+        <input type="hidden" name="controller" value="Products" />
+        <input type="hidden" name="hasParameter" value="true" />
+        <div class="form-group">
+            <input type="submit" value="Add to cart" class="btn btn-primary" />
+        </div>
+    </form>
 </div>

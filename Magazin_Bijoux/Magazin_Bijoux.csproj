@@ -1,9 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-Magazin_Bijoux-F7EFFCA4-81A1-46C2-AA67-69FC0AC6C415</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20230421080224_categoryandcartandproduct.cs" />
+    <Compile Remove="Data\Migrations\20230421080224_categoryandcartandproduct.Designer.cs" />
+    <Compile Remove="Data\Migrations\20230421103557_cartItems.cs" />
+    <Compile Remove="Data\Migrations\20230421103557_cartItems.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.19" />

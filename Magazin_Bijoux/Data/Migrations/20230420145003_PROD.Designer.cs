@@ -4,14 +4,16 @@ using Magazin_Bijoux.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Magazin_Bijoux.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230420145003_PROD")]
+    partial class PROD
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,51 +21,10 @@ namespace Magazin_Bijoux.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Magazin_Bijoux.Models.CartItem", b =>
-                {
-                    b.Property<string>("itemId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("cartId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("dateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("productId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("itemId");
-
-                    b.HasIndex("productId");
-
-                    b.ToTable("CartItem");
-                });
-
-            modelBuilder.Entity("Magazin_Bijoux.Models.Category", b =>
-                {
-                    b.Property<string>("categoryId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("categoryId");
-
-                    b.ToTable("Category");
-                });
-
             modelBuilder.Entity("Magazin_Bijoux.Models.Product", b =>
                 {
                     b.Property<string>("id")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("category")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("color")
                         .IsRequired()
@@ -290,13 +251,6 @@ namespace Magazin_Bijoux.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Magazin_Bijoux.Models.CartItem", b =>
-                {
-                    b.HasOne("Magazin_Bijoux.Models.Product", "product")
-                        .WithMany()
-                        .HasForeignKey("productId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
