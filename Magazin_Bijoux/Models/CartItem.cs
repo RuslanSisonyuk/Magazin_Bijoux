@@ -17,5 +17,13 @@ namespace Magazin_Bijoux.Models
 
         public virtual Product product { get; set; }
         
+        public float totalPrice { get; set; }
+
+
+        public float getTotalPrice()
+        {
+            this.totalPrice = quantity * product.price;
+            return totalPrice;
+        }
     }
 }

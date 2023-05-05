@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -16,9 +18,18 @@
             <partial name="_LoginPartial" />
             <a asp-area="" asp-controller="Home" asp-action="Shop">Shop</a>
             <a asp-area="" asp-controller="Home" asp-action="About">About</a>
-            <div class="header__cart">
-                <img src="~/Icons/white-shopping-cart-icon.jpg" alt="cart" />
-            </div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="header__cart">
+                    <a asp-area="" asp-controller="CartItems" asp-action="Cart"><img src="~/Icons/white-shopping-cart-icon.jpg" alt="cart" /></a>
+                </div>
+            }
+            else
+            {
+                <div class="header__cart">
+                    <a asp-area="Identity" asp-page="/Account/Login"><img src="~/Icons/white-shopping-cart-icon.jpg" alt="cart" /></a>
+                </div>
+            }
             @*<partial name="_CartMenuPartial"/>*@
 
         </div>

@@ -44,7 +44,22 @@ namespace Magazin_Bijoux.Controllers
 
             return View(product);
         }
+        public async Task<IActionResult> Product(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var product = await _context.Product
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
         // GET: Products/Create
         public IActionResult Create()
         {

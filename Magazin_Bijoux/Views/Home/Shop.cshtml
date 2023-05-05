@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Magazin_Bijoux.Models.Product>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@model IEnumerable<Magazin_Bijoux.Models.Product>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -20,14 +22,23 @@
 
             @*            <a asp-controller="ShoppingCartActions" asp-action="AddToCart" asp-route-id="@item.id"
         class="card__button" style="margin-top:10px;">Add to cart</a>*@
-        <form asp-controller="Products" asp-action="AddToCartAndReturn" asp-route-id="@item.id">
-            <input type="hidden" name="action" value="Shop" />
-            <input type="hidden" name="controller" value="Home" />
-            <input type="hidden" name="hasParameter" value="false" />
-            <div class="form-group">
-                <input type="submit" value="Add to cart" class="card__button btn-primary" />
-            </div>
-        </form>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <form asp-controller="CartItems" asp-action="AddToCartAndReturn" asp-route-id="@item.id">
+                    <input type="hidden" name="action" value="Shop" />
+                    <input type="hidden" name="controller" value="Home" />
+                    <input type="hidden" name="hasParameter" value="false" />
+                    <div class="form-group">
+                        <input type="submit" value="Add to cart" class="card__button btn-primary" />
+                    </div>
+                </form>
+            }
+            else
+            {
+                <div class="form-group">
+                    <a class="card__button btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Add to Cart</a>
+                </div>
+            }
         </div>
         }
     </div>
