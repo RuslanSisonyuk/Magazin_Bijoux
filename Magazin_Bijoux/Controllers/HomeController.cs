@@ -9,6 +9,7 @@ using Magazin_Bijoux.Data;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Magazin_Bijoux.Controllers
 {
     public class HomeController : Controller
@@ -21,8 +22,8 @@ namespace Magazin_Bijoux.Controllers
             _context = context;
         }
         private readonly ApplicationDbContext _context;
-        
 
+       
         public async Task<IActionResult> Index()
         {
             return View(await _context.Product.ToListAsync());

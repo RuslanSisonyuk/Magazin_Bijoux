@@ -231,9 +231,12 @@ namespace Magazin_Bijoux.Controllers
             if (cartItem.quantity <= 0) _context.CartItem.Remove(cartItem);
             _context.SaveChanges();
         }
-        public async Task<IActionResult> AddToCartAndReturn(string id, string action, string controller, bool hasParameter)
+        public async Task<IActionResult> AddToCartAndReturn(string id, string action, string controller, int quantity, bool hasParameter)
         {
-            AddToCart(id);
+            for (int i = 0; i < quantity; i++)
+            {
+                AddToCart(id);
+            }
             if (hasParameter == true)
                 return RedirectToAction(action, controller, new { id = id });
             return RedirectToAction(action, controller);

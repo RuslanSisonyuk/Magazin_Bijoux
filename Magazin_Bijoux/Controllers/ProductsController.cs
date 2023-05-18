@@ -60,6 +60,15 @@ namespace Magazin_Bijoux.Controllers
 
             return View(product);
         }
+        public void Decrement(string id)
+        {
+            ViewBag.quantity=1;
+        }
+        public async Task<IActionResult> Increment(string id)
+        {
+            ViewBag.quantity++;
+            return RedirectToAction("Product", id);
+        }
         // GET: Products/Create
         public IActionResult Create()
         {
@@ -166,7 +175,10 @@ namespace Magazin_Bijoux.Controllers
         {
             return _context.Product.Any(e => e.id == id);
         }
-
-
+        void DecrementCount()
+        {
+            if (ViewBag.quantity > 1)
+                ViewBag.quantity--;
+        }
     }
 }

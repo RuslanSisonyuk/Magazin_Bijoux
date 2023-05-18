@@ -1,8 +1,14 @@
-﻿@model Magazin_Bijoux.Models.Product
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@model Magazin_Bijoux.Models.Product
+
 
 @{
     ViewData["Title"] = Html.DisplayFor(model => model.name);
+
+    //float totalPrice = ViewBag.quantity * Model.price;
 }
+
 
 <h1>
     @Html.DisplayFor(model => model.name)
@@ -47,13 +53,31 @@
         </dd>
     </dl>
 </div>
+<div style="display:flex; flex-direction:row;">
+
+    <a asp-controller="Products" asp-action="Decrement">-</a>
+    <p>@ViewBag.quantity</p>
+    <a asp-controller="Products" asp-action="Increment" asp-route-id="@Model.id">+</a>
+
+    <p</p>
+</div>
 <div>
-    <form asp-action="AddToCartAndReturn" asp-route-id="@Model.id">
-        <input type="hidden" name="action" value="Product" />
-        <input type="hidden" name="controller" value="Products" />
-        <input type="hidden" name="hasParameter" value="true" />
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form asp-controller="CartItems" asp-action="AddToCartAndReturn" asp-route-id="@Model.id">
+            <input type="hidden" name="action" value="Product" />
+            <input type="hidden" name="controller" value="Products" />
+            <input type="hidden" name="quantity" value=@ViewBag.quantity />
+            <input type="hidden" name="hasParameter" value="true" />
+            <div class="form-group">
+                <input type="submit" value="Add to cart" class="card__button btn-primary" />
+            </div>
+        </form>
+    }
+    else
+    {
         <div class="form-group">
-            <input type="submit" value="Add to cart" class="btn btn-primary" />
+            <a class="card__button btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Add to Cart</a>
         </div>
-    </form>
+    }
 </div>
