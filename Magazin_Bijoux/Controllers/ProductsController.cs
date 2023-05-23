@@ -7,20 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Magazin_Bijoux.Data;
 using Magazin_Bijoux.Models;
-
+using Microsoft.Extensions.Localization;
 
 namespace Magazin_Bijoux.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, IStringLocalizer<SharedResource> sharedLocalizer)
         {
             _context = context;
+            _sharedLocalizer = sharedLocalizer;
         }
 
-
+        public IActionResult GetTime()
+        {
+            var currentTime = DateTime.Now.ToString("HH:mm:ss");
+            return Json(currentTime);
+        }
         // GET: Products
         public async Task<IActionResult> Index()
         {
@@ -57,6 +63,10 @@ namespace Magazin_Bijoux.Controllers
             {
                 return NotFound();
             }
+
+            product.name = _sharedLocalizer[product.name];
+            product.details = _sharedLocalizer[product.details];
+            product.color = _sharedLocalizer[product.color];
 
             return View(product);
         }

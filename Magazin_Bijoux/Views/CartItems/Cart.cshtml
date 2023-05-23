@@ -52,7 +52,7 @@
         <hr />
         <div style="display:flex; justify-content:space-between;">
             <a class="product_link" asp-controller="Products" asp-action="Product" asp-route-id="@item.product.id">
-                    <img class="small_cart_img" src="~/Product_img216x288/@Html.DisplayFor(modelItem => item.product.imageURL)" />
+                    <img class="small_cart_img" src=@String.Format("/Product_img280x373/{0}.png", item.product.imageURL) />
                     <div style="margin-left: 17px; margin-top: 20px;"class="fancy-font f-size">
                         <p>@Html.DisplayFor(modelItem => item.product.name)</p>
                         <p>$@Html.DisplayFor(modelItem => item.product.price)</p>

@@ -7,17 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Magazin_Bijoux.Data;
 using Magazin_Bijoux.Models;
+using Microsoft.Extensions.Localization;
 
 namespace Magazin_Bijoux.Controllers
 {
     public class CartItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
+
         public string ShoppingCartId { get; set; }
 
-        public CartItemsController(ApplicationDbContext context)
+        public CartItemsController(ApplicationDbContext context, IStringLocalizer<SharedResource> sharedLocalizer)
         {
             _context = context;
+            _sharedLocalizer = sharedLocalizer;
         }
         public const string CartSessionKey = "CartId";
  
@@ -186,6 +190,12 @@ namespace Magazin_Bijoux.Controllers
         public ViewResult Cart()
         {
             var cartContext = GetCartItems();
+            foreach (var item in cartContext)
+            {
+                item.product.name = _sharedLocalizer[item.product.name];
+                item.product.details = _sharedLocalizer[item.product.details];
+                item.product.color = _sharedLocalizer[item.product.color];
+            }
             return View(cartContext);
         }
 

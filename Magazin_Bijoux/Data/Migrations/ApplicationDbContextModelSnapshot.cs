@@ -65,9 +65,6 @@ namespace Magazin_Bijoux.Data.Migrations
                     b.Property<string>("id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("category")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

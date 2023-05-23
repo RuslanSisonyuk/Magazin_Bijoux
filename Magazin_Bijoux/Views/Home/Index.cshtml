@@ -10,14 +10,14 @@
 <section class="home__showcase">
     <div class="home__arrow">
         <img src="~/Icons/Arrow_left.png" alt="leftArrow" />
-    </div>
+    </div>@**@
     <div class="home__items">
         @foreach (var item in Model)
         {
             <div class="home__card">
                 <div class="card__image">
                     <a asp-controller="Products" asp-action="Product" asp-route-id="@item.id" class="card__image">
-                        <img src="~/Product_img216x288/@Html.DisplayFor(modelItem => item.imageURL)" alt="cardImage.png" />
+                        <img src=@String.Format("/Product_img280x373/{0}.png", item.imageURL) alt="cardImage.png" />
                     </a>
                 </div>
                 <div class="card__text">@Html.DisplayFor(modelItem => item.name)</div>

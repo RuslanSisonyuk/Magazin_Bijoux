@@ -15,7 +15,7 @@
         {
         <div class="home__card">
             <a asp-controller="Products" asp-action="Product" asp-route-id="@item.id" class="card__image">
-                <img src="~/Product_img216x288/@Html.DisplayFor(modelItem => item.imageURL)" alt="cardImage.png" />
+                <img src="@String.Format("/Product_img280x373/{0}.png", item.imageURL)" alt="cardImage.png" />
             </a>
             <div class="card__text">@Html.DisplayFor(modelItem => item.name)</div>
             <div class="card__text">$@Html.DisplayFor(modelItem => item.price)</div>
