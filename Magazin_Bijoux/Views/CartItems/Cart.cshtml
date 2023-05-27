@@ -68,7 +68,7 @@
                             <input type="submit" value="-" />
                         </div>
                     </form>
-                    <p style="display: flex; align-items: center;">$@Html.DisplayFor(modelItem => item.quantity)</p>
+                    <p style="display: flex; align-items: center;">@Html.DisplayFor(modelItem => item.quantity)</p>
                     <form asp-controller="CartItems" asp-action="AddToCartAndReturn" asp-route-id="@item.productId">
                         <input type="hidden" name="action" value="Cart" />
                         <input type="hidden" name="controller" value="CartItems" />

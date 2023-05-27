@@ -8,13 +8,38 @@
 
     //float totalPrice = ViewBag.quantity * Model.price;
 }
+<style>
+    .count_box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        border: 1px solid #C08E9D;
+        width: 50%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .count_box p{
+        text-align: center;
+    }
+    .fancy-font {
+        color: black;
+        font-family: 'Oranienbaum';
+        font-size: 18px;
+    }
+    
+</style>
 <div style="display:flex; flex-direction:row; justify-content: center; margin-top:30px; margin-bottom:30px;">
     <div>
-        <img src=@String.Format("/Product_img580x420/{0}_{1}.png", Model.imageURL, "1") />
+        <img id="image" src=@String.Format("/Product_img580x420/{0}_{1}.png", Model.imageURL, "1") />
     </div>
 
     <div style="margin-left: 30px;">
-        <div>
+        <div class="fancy-font">
             <p>
                 <h4>
                     @Html.DisplayFor(model => model.name)
@@ -25,26 +50,24 @@
                 @Html.DisplayFor(model => model.details)
             </p>
             <p>
-                Taile:  @Html.DisplayFor(model => model.size)<br />
-                Couleur: @Html.DisplayFor(model => model.color)<br />
+                @localizer["size"]:  @Html.DisplayFor(model => model.size)<br />
+                @localizer["color"]: @Html.DisplayFor(model => model.color)<br />
             </p>
         </div>
-        <div style="display:flex; flex-direction:row;">
-            <p>
-            @using (Html.BeginForm())
-            {
-
-            }
-                    Cantitate
-                <a asp-controller="Products" asp-action="Decrement">-</a>
-                1
-                <a asp-controller="Products" asp-action="Increment" asp-route-id="@Model.id">+</a>
-            </p>
+        <div style="display:flex; flex-direction:column;" class="fancy-font">
+            <div>    
+                @localizer["amount"]
+            </div>
+            <div class="count_box">
+                <a id="decrement">-</a>
+                <a id="item_amount">1</a>
+                <a id="increment">+</a>
+            </div>
         </div>
-        <div>
-            <p>
-                Total:
-                $total
+        <div class="fancy-font">
+            <p style="margin:0px">
+                Total:<br />
+                $<p id="total">@Model.price</p>
             </p>
         </div>
         <div>
@@ -53,37 +76,52 @@
                 <form asp-controller="CartItems" asp-action="AddToCartAndReturn" asp-route-id="@Model.id">
                     <input type="hidden" name="action" value="Product" />
                     <input type="hidden" name="controller" value="Products" />
-                    <input type="hidden" name="quantity" value=1 />
+                    <input type="hidden" name="quantity" id="post_value" value=1 />
                     <input type="hidden" name="hasParameter" value="true" />
                     <div class="form-group">
-                        <input type="submit" value="Add to cart" class="card__button btn btn-primary" />
+                        <input type="submit" value="@localizer["add to cart"]" class="card__button btn btn-primary" />
                     </div>
                 </form>
             }
             else
             {
                 <div class="form-group">
-                    <a class="card__button btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Add to Cart</a>
+                    <a class="card__button btn btn-primary" asp-area="Identity" asp-page="/Account/Login">@localizer["add to cart"]</a>
                 </div>
             }
         </div>
     </div>
-</div>
-@section Scripts{ 
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            url: '/ProductsController/GetTime',
-            type: 'GET',
-            success: function (response) {
-                // Process the response
-                console.log('Current time: ' + response);
-            },
-            error: function (xhr, status, error) {
-                // Handle the error
-                console.log('Error: ' + error);
-            }
-        });
-    });
-</script>
+    @section Scripts
+    {
+        <script>
+            var img_base_url = "/Product_img580x420/@Model.imageURL"+"_{0}.png";
+            var img_url_1 = img_base_url.replace('{0}', '1');
+            var img_url_2 = img_base_url.replace('{0}', '2');
+            var img_url_3 = img_base_url.replace('{0}', '3');
+            var amount = 1;
+            var cost = @Model.price;
+            $(document).ready(function () {
+                $('#increment').click(function () {
+                    amount += 1;
+                    $('#item_amount').text(amount);
+                    $('#post_value').val(amount);
+                    $('#total').text(amount*cost);
+                });
+                $('#decrement').click(function () {
+                    if(amount>1) amount -= 1;
+                    $('#item_amount').text(amount);
+                    $('#post_value').val(amount);
+                    $('#total').text(amount * cost);
+                });
+                $('#image').click(function () {
+                    if($('#image').attr('src') === img_url_1)
+                        $('#image').attr('src', img_url_2) 
+                    else if ($('#image').attr('src') === img_url_2)
+                        $('#image').attr('src', img_url_3)
+                    else if ($('#image').attr('src') === img_url_3)
+                        $('#image').attr('src', img_url_1);
+                });
+            });
+        </script>
     }
+</div>
