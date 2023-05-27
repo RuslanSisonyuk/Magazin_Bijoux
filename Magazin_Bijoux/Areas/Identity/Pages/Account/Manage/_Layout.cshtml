@@ -1,4 +1,6 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
         Layout = (string)parentLayout;
@@ -9,10 +11,10 @@
     }
 }
 
-<h2>Manage your account</h2>
+<h2>@localizer["manage"]</h2>
 
 <div style="margin-top:50px; margin-bottom: 100px;">
-    <h4>Change your account settings</h4>
+    <h4>@localizer["change settings"]</h4>
     <hr />
     <div class="row">
         <div class="col-md-3">

@@ -1,8 +1,8 @@
 ﻿@page
 @model LoginModel
-
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = localizer["log in"];
 }
 
 <div class="row" style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
@@ -10,7 +10,7 @@
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
+                <h4>@localizer["local acc"]</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -19,7 +19,8 @@
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Password"></label>
+                    <label asp-for="Input.Password">@localizer["password"]</label>
+
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
@@ -27,19 +28,19 @@
                     <div class="checkbox">
                         <label asp-for="Input.RememberMe">
                             <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            @localizer["remember me"]
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <button type="submit" class="btn btn-primary">@localizer["log in"]</button>
                 </div>
-                <div class="form-group" >
+                <div class="form-group">
                     <p>
-                        <a id="forgot-password" class="standart_black" asp-page="./ForgotPassword">Forgot your password?@*Ai pierdut parola?*@</a>
+                        <a id="forgot-password" class="standart_black" asp-page="./ForgotPassword">@localizer["forgot pass"]</a>
                     </p>
                     <p>
-                        <a asp-page="./Register" class="standart_black"  asp-route-returnUrl="@Model.ReturnUrl">Register as a new user.@*Registrează un utilizator nou.*@</a>
+                        <a asp-page="./Register" class="standart_black" asp-route-returnUrl="@Model.ReturnUrl">@localizer["register"]</a>
                     </p>
                 </div>
             </form>

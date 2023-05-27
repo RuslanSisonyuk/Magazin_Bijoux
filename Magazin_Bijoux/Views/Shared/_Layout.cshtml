@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -13,12 +15,22 @@
             <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/MOFT-LOGO.png" alt="logo" /></a>
         </div>
         <div class="header__nav">
+            @await Html.PartialAsync("_LanguagePartial")
             <partial name="_LoginPartial" />
-            <a asp-area="" asp-controller="Home" asp-action="Shop">Shop</a>
-            <a asp-area="" asp-controller="Home" asp-action="About">About</a>
-            <div class="header__cart">
-                <img src="~/Icons/white-shopping-cart-icon.jpg" alt="cart" />
-            </div>
+            <a asp-area="" asp-controller="Home" asp-action="Shop">@localizer["shop"]</a>
+            <a asp-area="" asp-controller="Home" asp-action="About">@localizer["about"]</a>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="header__cart">
+                    <a asp-area="" asp-controller="CartItems" asp-action="Cart"><img src="~/Icons/white-shopping-cart-icon.jpg" alt="cart" /></a>
+                </div>
+            }
+            else
+            {
+                <div class="header__cart">
+                    <a asp-area="Identity" asp-page="/Account/Login"><img src="~/Icons/white-shopping-cart-icon.jpg" alt="cart" /></a>
+                </div>
+            }
             @*<partial name="_CartMenuPartial"/>*@
 
         </div>
@@ -37,7 +49,7 @@
     <footer>
         <div class="footer__left">
             <a class="white_link" asp-area="" asp-controller="Home" asp-action="LegalPage">FAQ</a>
-            <a class="white_link" asp-area="" asp-controller="Home" asp-action="LegalPage">Aviz juridic</a>
+            <a class="white_link" asp-area="" asp-controller="Home" asp-action="LegalPage">@localizer["legal page"]</a>
         </div>
         <div class="footer__right">
             <div class="footer__phone">
@@ -60,6 +72,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

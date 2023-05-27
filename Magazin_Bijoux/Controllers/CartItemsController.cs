@@ -7,77 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Magazin_Bijoux.Data;
 using Magazin_Bijoux.Models;
+using Microsoft.Extensions.Localization;
 
 namespace Magazin_Bijoux.Controllers
 {
     public class CartItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public string ShoppingCartId { get; set; }
-        public string guid { get; set; }
+        private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
 
-        public CartItemsController(ApplicationDbContext context)
+        public string ShoppingCartId { get; set; }
+
+        public CartItemsController(ApplicationDbContext context, IStringLocalizer<SharedResource> sharedLocalizer)
         {
             _context = context;
-            guid = HttpContext.Session.Id;
+            _sharedLocalizer = sharedLocalizer;
         }
         public const string CartSessionKey = "CartId";
-
-        public void AddToCart(string id)
-        {
-            // Retrieve the product from the database.           
-            ShoppingCartId = GetCartId();
-
-            var cartItem = _context.CartItem.SingleOrDefault(
-                c => c.cartId == ShoppingCartId
-                && c.productId == id);
-            if (cartItem == null)
-            {
-                // Create a new cart item if no cart item exists.                 
-                cartItem = new CartItem
-                {
-                    itemId = Guid.NewGuid().ToString(),
-                    productId = id,
-                    cartId = ShoppingCartId,
-                    product = _context.Product.SingleOrDefault(
-                   p => p.id == id),
-                    quantity = 1,
-                    dateCreated = DateTime.Now
-                };
-
-                _context.CartItem.Add(cartItem);
-            }
-            else
-            {
-                // If the item does exist in the cart,                  
-                // then add one to the quantity.                 
-                cartItem.quantity++;
-            }
-            _context.SaveChanges();
-        }
-        public async Task<IActionResult> AddToCartAndReturn(string id, string action, string controller, bool hasParameter)
-        {
-            AddToCart(id);
-            if (hasParameter == true)
-                return RedirectToAction(action, controller, new { id = id });
-            return RedirectToAction(action, controller);
-        }
-        public async Task<IActionResult> Product(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
+ 
         // GET: CartItems
         public async Task<IActionResult> Index()
         {
@@ -215,20 +162,6 @@ namespace Magazin_Bijoux.Controllers
         {
             return _context.CartItem.Any(e => e.itemId == id);
         }
-
-        public List<CartItem> GetCartItems()
-        {
-
-            ShoppingCartId = GetCartId();
-
-            return _context.CartItem.Where(
-                c => c.cartId == ShoppingCartId).ToList();
-        }
-        public ViewResult Cart()
-        {
-            var cartContext = GetCartItems();
-            return View(cartContext);
-        }
         public string GetCartId()
         {
             if (!HttpContext.Items.ContainsKey(CartSessionKey))
@@ -240,12 +173,97 @@ namespace Magazin_Bijoux.Controllers
                 else
                 {
                     // Generate a new random GUID using System.Guid class.     
-                    //Guid tempCartId = Guid.NewGuid();
-                    HttpContext.Items.Add(CartSessionKey, guid);
+                    Guid tempCartId = Guid.NewGuid();
+                    HttpContext.Items.Add(CartSessionKey, tempCartId);
                 }
             }
             return HttpContext.Items[CartSessionKey].ToString();
         }
+        public List<CartItem> GetCartItems()
+        {
 
+            ShoppingCartId = GetCartId();
+
+            return _context.CartItem.Where(
+                c => c.cartId == ShoppingCartId).Include(c=>c.product).ToList();
+        }
+        public ViewResult Cart()
+        {
+            var cartContext = GetCartItems();
+            foreach (var item in cartContext)
+            {
+                item.product.name = _sharedLocalizer[item.product.name];
+                item.product.details = _sharedLocalizer[item.product.details];
+                item.product.color = _sharedLocalizer[item.product.color];
+            }
+            return View(cartContext);
+        }
+
+        public void AddToCart(string id)
+        {
+            // Retrieve the product from the database.           
+            ShoppingCartId = GetCartId();
+
+            var cartItem = _context.CartItem.SingleOrDefault(
+                c => c.cartId == ShoppingCartId
+                && c.productId == id);
+            if (cartItem == null)
+            {
+                // Create a new cart item if no cart item exists.                 
+                cartItem = new CartItem
+                {
+                    itemId = Guid.NewGuid().ToString(),
+                    productId = id,
+                    cartId = ShoppingCartId,
+                    product = _context.Product.SingleOrDefault(
+                   p => p.id == id),
+                    quantity = 1,
+                    dateCreated = DateTime.Now
+                };
+
+                _context.CartItem.Add(cartItem);
+            }
+            else
+            {
+                // If the item does exist in the cart,                  
+                // then add one to the quantity.                 
+                cartItem.quantity++;
+            }
+            _context.SaveChanges();
+        }
+        public void RemoveFromCart(string id)
+        {
+            ShoppingCartId = GetCartId();
+            var cartItem = _context.CartItem.SingleOrDefault(
+                c => c.cartId == ShoppingCartId
+                && c.productId == id);
+            cartItem.quantity--;
+            if (cartItem.quantity <= 0) _context.CartItem.Remove(cartItem);
+            _context.SaveChanges();
+        }
+        public async Task<IActionResult> AddToCartAndReturn(string id, string action, string controller, int quantity, bool hasParameter)
+        {
+            for (int i = 0; i < quantity; i++)
+            {
+                AddToCart(id);
+            }
+            if (hasParameter == true)
+                return RedirectToAction(action, controller, new { id = id });
+            return RedirectToAction(action, controller);
+        }
+        public async Task<IActionResult> RemoveFromCartAndReturn(string id, string action, string controller, bool hasParameter)
+        {
+            RemoveFromCart(id);
+            if (hasParameter == true)
+                return RedirectToAction(action, controller, new { id = id });
+            return RedirectToAction(action, controller);
+        }
+        public async Task<IActionResult> DeleteFromCart(string id, string action, string controller)
+        {
+            var cartItem = await _context.CartItem.FindAsync(id);
+            _context.CartItem.Remove(cartItem);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(action, controller);
+        }
     }
 }

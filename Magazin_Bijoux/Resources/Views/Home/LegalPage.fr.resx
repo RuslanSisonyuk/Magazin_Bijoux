@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="confirmation" xml:space="preserve">
+    <value>&lt;h3&gt;Confirmation&lt;/h3&gt;
+            &lt;p&gt;
+                Confirmation Dès que la commande est passée, le client reçoit un
+                e-mail de confirmation comprenant une facture électronique. Donc,
+                il est important que vous nous fournissiez une adresse e-mail valide lors de
+                le processus d'achat. Nous vous conseillons d'enregistrer votre adresse e-mail
+                auprès de qui vous avez passé commande pour faciliter le contact
+                notre service client en cas de demande. E-mail
+                votre confirmation sert également de preuve d'achat. (document
+                preuve)
+            &lt;/p&gt;</value>
+  </data>
+  <data name="legal page" xml:space="preserve">
+    <value>Mention legal</value>
+  </data>
+  <data name="order" xml:space="preserve">
+    <value>&lt;h3&gt;Commande&lt;/h3&gt;
+            &lt;p&gt;
+                La prise de commande sur le site est soumise au respect de la procédure
+                établi par le MOFT sur le site comportant des étapes successives aboutissant à
+                validation de la commande. Le client peut sélectionner autant de produits qu'il le souhaite
+                qui sera ajouté au panier. Le panier récapitule les produits choisis par le client,
+                ainsi que leurs prix et coûts. Le client peut
+                modifier librement le panier avant de valider votre commande. Validation
+                la commande vaut confirmation de l'acceptation par le client de TGC, un
+                des produits achetés, leur prix et leurs coûts
+                associé. Passer une commande au nom d'une autre personne sans
+                y consentir ou passer une commande qui pourrait
+                la cause du préjudice économique MOFT fera l'objet d'un rapport
+                police. MOFT se réserve le droit de modifier ses prix à tout moment
+                temps ou pour corriger des prix incorrects. Si un
+                le prix a été déclaré de manière incorrecte, MOFT sera obligé d'annuler la commande
+                et rembourse les cotisations autant qu'il le peut. Ceci peut être fait
+                arriver à tout moment. Un e-mail de confirmation récapitulant
+                commande (produit(s), prix, disponibilité du(des) produit(s),
+                quantité, etc.) sera envoyé au client. A cet effet, le client
+                accepte formellement l'utilisation du courrier électronique pour confirmation par
+                au MOFT du contenu de sa commande.
+            &lt;/p&gt;</value>
+  </data>
+  <data name="payment" xml:space="preserve">
+    <value>&lt;h3&gt;Le paiement&lt;/h3&gt;
+            &lt;p&gt;
+                Le paiement s'effectue en ligne au choix du client : via Paypal ou via
+                carte de crédit. Tous les paiements par carte de crédit sont effectués via
+                la plateforme sécurisée de notre prestataire de paiement Stripe. MOFT non
+                ne traite aucune donnée de carte de crédit. Paiement par carte de crédit
+                Les cartes acceptées sont : Visa, Mastercard. Tous les achats
+                faites sur le site sont protégées et sécurisées 7 jours sur 7
+                et 24 heures sur 24.
+            &lt;/p&gt;</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>&lt;h3&gt;Produit&lt;/h3&gt;
+            &lt;p&gt;
+               Les produits proposés à la vente sont ceux qui figurent sur le site au jour
+                sa consultation par le client. Les produits sont décrits et
+                présentés aussi fidèlement que possible. MOFT ne peut pas être
+                responsable en cas de variations minimes entre les produits et
+                leur présentation sur le site. MOFT s'engage à livrer des produits
+                qui répondent aux exigences en vigueur relatives à la sécurité et
+                la santé des personnes conformément aux dispositions européennes, et en
+                notamment avec la législation sur les produits chimiques à teneur
+                réglementé.
+            &lt;/p&gt;</value>
+  </data>
+  <data name="selling conditions" xml:space="preserve">
+    <value>&lt;h1&gt;Conditions de vente&lt;/h1&gt;
+    &lt;div class="text__block"&gt;
+        &lt;h3 style="text-transform: none"&gt;Introduction&lt;/h3&gt;
+        &lt;p&gt;
+           Les Conditions Générales de Vente ("CG") détaillées ci-dessous s'appliquent
+            à toutes les commandes de produits effectuées via le site Web
+            www.moft-bijoux.com de la société BORGO, 1 Avenue Simon Vouet, 78560 Le
+            Port Marly par le client. Le client doit lire les CGU
+            préalablement à toute commande, les CGU étant disponibles sur le site. Dans le
+            par conséquent, le fait de passer une commande sur notre site vaut
+            acceptation entière, préalable et sans réserve des CGV par
+            client.
+        &lt;/p&gt;
+    &lt;/div&gt;</value>
+  </data>
+</root>

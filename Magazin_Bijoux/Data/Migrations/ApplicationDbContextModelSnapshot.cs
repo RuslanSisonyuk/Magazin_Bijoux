@@ -36,6 +36,9 @@ namespace Magazin_Bijoux.Data.Migrations
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
+                    b.Property<float>("totalPrice")
+                        .HasColumnType("real");
+
                     b.HasKey("itemId");
 
                     b.HasIndex("productId");
@@ -61,9 +64,6 @@ namespace Magazin_Bijoux.Data.Migrations
                 {
                     b.Property<string>("id")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("category")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("color")
                         .IsRequired()

@@ -7,20 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Magazin_Bijoux.Data;
 using Magazin_Bijoux.Models;
-
+using Microsoft.Extensions.Localization;
 
 namespace Magazin_Bijoux.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, IStringLocalizer<SharedResource> sharedLocalizer)
         {
             _context = context;
+            _sharedLocalizer = sharedLocalizer;
         }
 
-
+        public IActionResult GetTime()
+        {
+            var currentTime = DateTime.Now.ToString("HH:mm:ss");
+            return Json(currentTime);
+        }
         // GET: Products
         public async Task<IActionResult> Index()
         {
@@ -44,7 +50,35 @@ namespace Magazin_Bijoux.Controllers
 
             return View(product);
         }
+        public async Task<IActionResult> Product(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var product = await _context.Product
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.name = _sharedLocalizer[product.name];
+            product.details = _sharedLocalizer[product.details];
+            product.color = _sharedLocalizer[product.color];
+
+            return View(product);
+        }
+        public void Decrement(string id)
+        {
+            ViewBag.quantity=1;
+        }
+        public async Task<IActionResult> Increment(string id)
+        {
+            ViewBag.quantity++;
+            return RedirectToAction("Product", id);
+        }
         // GET: Products/Create
         public IActionResult Create()
         {
@@ -151,7 +185,10 @@ namespace Magazin_Bijoux.Controllers
         {
             return _context.Product.Any(e => e.id == id);
         }
-
-
+        void DecrementCount()
+        {
+            if (ViewBag.quantity > 1)
+                ViewBag.quantity--;
+        }
     }
 }

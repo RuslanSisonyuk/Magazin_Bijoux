@@ -1,9 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@model IEnumerable<Magazin_Bijoux.Models.Product>
 @inject SignInManager<IdentityUser> SignInManager
-
+@model IEnumerable<Magazin_Bijoux.Models.Product>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 <head>
     <link rel="stylesheet" href="~/css/home.css" />
@@ -11,33 +10,34 @@
 <section class="home__showcase">
     <div class="home__arrow">
         <img src="~/Icons/Arrow_left.png" alt="leftArrow" />
-    </div>
+    </div>@**@
     <div class="home__items">
         @foreach (var item in Model)
         {
             <div class="home__card">
                 <div class="card__image">
                     <a asp-controller="Products" asp-action="Product" asp-route-id="@item.id" class="card__image">
-                        <img src="~/Product_img216x288/@Html.DisplayFor(modelItem => item.imageURL)" alt="cardImage.png" />
+                        <img src=@String.Format("/Product_img280x373/{0}.png", item.imageURL) alt="cardImage.png" />
                     </a>
                 </div>
                 <div class="card__text">@Html.DisplayFor(modelItem => item.name)</div>
-                <div class="card__text">@Html.DisplayFor(modelItem => item.price)</div>
+                <div class="card__text">$@Html.DisplayFor(modelItem => item.price)</div>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <form asp-controller="Products" asp-action="AddToCartAndReturn" asp-route-id="@item.id">
+                    <form asp-controller="CartItems" asp-action="AddToCartAndReturn" asp-route-id="@item.id">
                         <input type="hidden" name="action" value="Index" />
                         <input type="hidden" name="controller" value="Home" />
+                        <input type="hidden" name="quantity" value=1 />
                         <input type="hidden" name="hasParameter" value="false" />
                         <div class="form-group">
-                            <input type="submit" value="Add to cart" class="card__button btn btn-primary" />
+                            <input type="submit" value="@localizer["add to cart"]" class="card__button btn btn-primary" />
                         </div>
                     </form>
                 }
                 else
                 {
                     <div class="form-group">
-                        <a class="card__button btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Add to Cart</a>
+                        <a class="card__button btn btn-primary" asp-area="Identity" asp-page="/Account/Login">@localizer["add to cart"]</a>
                     </div>
                 }
             </div>
@@ -53,15 +53,10 @@
 <section class="home__info">
     <div class="info__container">
         <div class="info__text">
-            Noi oferim o gamă largă de bijuterii de înaltă calitate, potrivite
-            gusturilor și stilului dvs. Indiferent de ceea ce căutați, suntem
-            siguri că le veți purta. De la cele mai vândute colecții la articole
-            în ediție limitată, vă garantăm că veți profita la maximum de
-            achiziția dvs. Este întotdeauna un moment bun pentru a vă răsfăța cu
-            ceva special pentru dvs. sau cei dragi.
+            @localizer["Home Info"]
         </div>
 
-        <a class="info__button" style="margin-top:10px;" asp-area="" asp-controller="Home" asp-action="Shop">Shop now@*Cumpără Acum*@</a>
+        <a class="info__button" style="margin-top:10px;" asp-area="" asp-controller="Home" asp-action="Shop">@localizer["shop now"]</a>
     </div>
     <div class="info__image">
         <img src="~/Description_Cut.png" alt="footer.jpg" />

@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>A propos</value>
+  </data>
+  <data name="about product" xml:space="preserve">
+    <value>&lt;h2&gt;À PROPOS DE NOS BIJOUX&lt;/h2&gt;
+        &lt;p&gt;
+            Pourquoi des bijoux en acier inoxydable ? Le premier avantage des bijoux
+            l'inox est la qualité inaltérable, indestructible,
+            inchangé de son alliage. En raison de sa composition, avec du poisson
+            10,5% de chrome, ce type d'acier est inoxydable. En fait, il ne rouille pas
+            jamais. Ce sont des bijoux qui durent dans le temps.&lt;br /&gt;&lt;br /&gt;
+
+            Pourquoi choisir l'inox ? L'acier inoxydable est très
+            résistant à la corrosion grâce à la couche protectrice formée par
+            la présence de chrome dans l'alliage. Votre garde-corps en acier inoxydable ne
+            se brisera, ne rouillera pas et ne se corrodera pas avec le temps.&lt;br /&gt;&lt;br /&gt;
+
+            Acier chirurgical : bijoux hypoallergéniques Parce que choisir un
+            beau bijou et se rendre compte que le porter crée des rougeurs,
+            les démangeaisons, les petits boutons ou l'eczéma sont désagréables et frustrants,
+            nos bijoux sont en acier chirurgical, un métal anti-allergène
+            qui n'irrite pas la peau. L'acier chirurgical utilisé est un acier
+            biocompatible qui résiste parfaitement aux fluides corporels. Éviter
+            allergies et irritations.&lt;br /&gt;&lt;br /&gt;
+
+           Comment nettoyer l'acier doré ? L'eau savonneuse est un moyen efficace
+            pour nettoyer tout produit en acier, tant qu'il n'était pas solide
+            oxydé. Trempez un chiffon dans de l'eau additionnée de savon de Marseille, puis
+            frottez-le sur la surface en acier. N'oubliez pas de bien sécher une fois
+            le nettoyage semble optimal.
+        &lt;/p&gt;</value>
+  </data>
+  <data name="about us" xml:space="preserve">
+    <value>&lt;h2&gt;À propos de nous&lt;/h2&gt;
+    &lt;p&gt;
+       Nous offrons une large gamme de bijoux assortis de haute qualité
+        à vos goûts et à votre style. Quoi que vous recherchiez, nous sommes sûrs
+        que vous les porterez. Des collections les plus vendues aux nouveautés
+        limité, nous vous garantissons que vous tirerez le meilleur parti de votre achat.
+        toujours un bon moment pour s'offrir quelque chose de spécial pour
+        vous ou vos proches.
+    &lt;/p&gt;</value>
+  </data>
+  <data name="bijoux" xml:space="preserve">
+    <value>&lt;h2&gt;bijoux de mode&lt;/h2&gt;
+        &lt;p&gt;
+            Vous méritez de vous sentir en confiance dès que vous mettez vos bijoux.
+            &lt;br /&gt;&lt;br /&gt;
+            Notre style est un mélange sophistiqué d'élégance intemporelle et
+            design minimaliste avec une touche de luxe. Nous vous proposons des bijoux qui
+            vous pouvez vous coiffer tous les jours - avec n'importe quelle tenue, pour n'importe quelle occasion.
+            &lt;br /&gt;&lt;br /&gt;
+            Nos clients sont au cœur de tout ce que nous faisons. C'est l'engagement
+            notre pour vous faire plaisir et continuer à vous surprendre avec des pistes
+            qui vous donnera l'impression d'être en charge. &lt;br /&gt;&lt;br /&gt;
+            Votre potentiel est le moteur de notre mission ! Nos bijoux
+            Je suis ici pour vous aider à libérer votre pouvoir, à
+            partagez votre histoire personnelle et montrez au monde votre style unique.
+        &lt;/p&gt;</value>
+  </data>
+</root>

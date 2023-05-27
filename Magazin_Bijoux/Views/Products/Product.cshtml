@@ -1,59 +1,127 @@
-﻿@model Magazin_Bijoux.Models.Product
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@model Magazin_Bijoux.Models.Product
+
 
 @{
     ViewData["Title"] = Html.DisplayFor(model => model.name);
+
+    //float totalPrice = ViewBag.quantity * Model.price;
 }
+<style>
+    .count_box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        border: 1px solid #C08E9D;
+        width: 50%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .count_box p{
+        text-align: center;
+    }
+    .fancy-font {
+        color: black;
+        font-family: 'Oranienbaum';
+        font-size: 18px;
+    }
+    
+</style>
+<div style="display:flex; flex-direction:row; justify-content: center; margin-top:30px; margin-bottom:30px;">
+    <div>
+        <img id="image" src=@String.Format("/Product_img580x420/{0}_{1}.png", Model.imageURL, "1") />
+    </div>
 
-<h1>
-    @Html.DisplayFor(model => model.name)
-</h1>
-
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.details)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.details)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.size)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.size)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.color)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.color)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.price)
-        </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.imageURL)
-        </dd>
-    </dl>
-</div>
-<div>
-    <form asp-action="AddToCartAndReturn" asp-route-id="@Model.id">
-        <input type="hidden" name="action" value="Product" />
-        <input type="hidden" name="controller" value="Products" />
-        <input type="hidden" name="hasParameter" value="true" />
-        <div class="form-group">
-            <input type="submit" value="Add to cart" class="btn btn-primary" />
+    <div style="margin-left: 30px;">
+        <div class="fancy-font">
+            <p>
+                <h4>
+                    @Html.DisplayFor(model => model.name)
+                </h4>
+                $@Html.DisplayFor(model => model.price)
+            </p>
+            <p>
+                @Html.DisplayFor(model => model.details)
+            </p>
+            <p>
+                @localizer["size"]:  @Html.DisplayFor(model => model.size)<br />
+                @localizer["color"]: @Html.DisplayFor(model => model.color)<br />
+            </p>
         </div>
-    </form>
+        <div style="display:flex; flex-direction:column;" class="fancy-font">
+            <div>    
+                @localizer["amount"]
+            </div>
+            <div class="count_box">
+                <a id="decrement">-</a>
+                <a id="item_amount">1</a>
+                <a id="increment">+</a>
+            </div>
+        </div>
+        <div class="fancy-font">
+            <p style="margin:0px">
+                Total:<br />
+                $<p id="total">@Model.price</p>
+            </p>
+        </div>
+        <div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <form asp-controller="CartItems" asp-action="AddToCartAndReturn" asp-route-id="@Model.id">
+                    <input type="hidden" name="action" value="Product" />
+                    <input type="hidden" name="controller" value="Products" />
+                    <input type="hidden" name="quantity" id="post_value" value=1 />
+                    <input type="hidden" name="hasParameter" value="true" />
+                    <div class="form-group">
+                        <input type="submit" value="@localizer["add to cart"]" class="card__button btn btn-primary" />
+                    </div>
+                </form>
+            }
+            else
+            {
+                <div class="form-group">
+                    <a class="card__button btn btn-primary" asp-area="Identity" asp-page="/Account/Login">@localizer["add to cart"]</a>
+                </div>
+            }
+        </div>
+    </div>
+    @section Scripts
+    {
+        <script>
+            var img_base_url = "/Product_img580x420/@Model.imageURL"+"_{0}.png";
+            var img_url_1 = img_base_url.replace('{0}', '1');
+            var img_url_2 = img_base_url.replace('{0}', '2');
+            var img_url_3 = img_base_url.replace('{0}', '3');
+            var amount = 1;
+            var cost = @Model.price;
+            $(document).ready(function () {
+                $('#increment').click(function () {
+                    amount += 1;
+                    $('#item_amount').text(amount);
+                    $('#post_value').val(amount);
+                    $('#total').text(amount*cost);
+                });
+                $('#decrement').click(function () {
+                    if(amount>1) amount -= 1;
+                    $('#item_amount').text(amount);
+                    $('#post_value').val(amount);
+                    $('#total').text(amount * cost);
+                });
+                $('#image').click(function () {
+                    if($('#image').attr('src') === img_url_1)
+                        $('#image').attr('src', img_url_2) 
+                    else if ($('#image').attr('src') === img_url_2)
+                        $('#image').attr('src', img_url_3)
+                    else if ($('#image').attr('src') === img_url_3)
+                        $('#image').attr('src', img_url_1);
+                });
+            });
+        </script>
+    }
 </div>

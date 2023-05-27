@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>Despre</value>
+  </data>
+  <data name="about product" xml:space="preserve">
+    <value>&lt;h2&gt;DESPRE BIJUTERILE NOASTRE&lt;/h2&gt;
+        &lt;p&gt;
+            De ce bijuterii din oțel inoxidabil? Primul avantaj al bijuteriilor
+            din oțel inoxidabil este calitatea inalterabilă, indestructibilă,
+            neschimbătoare a aliajului său. Datorită compoziției sale, cu peste
+            10,5% crom, acest tip de oțel este inoxidabil. De fapt, nu ruginește
+            niciodată. Acestea sunt bijuterii care durează în timp.&lt;br /&gt;&lt;br /&gt;
+
+            De ce să alegeți oțel inoxidabil? Oțelul inoxidabil este foarte
+            rezistent la coroziune datorită stratului protector format prin
+            prezența cromului în aliaj. Balustrada ta din oțel inoxidabil nu se va
+            sfărâma, nu se va rugini sau nu se va rugini în timp.&lt;br /&gt;&lt;br /&gt;
+
+            Oțel chirurgical: bijuterii hipoalergenice Pentru că a alege o
+            bijuterie frumoasă și a realiza că purtarea ei creează roșeață,
+            mâncărime, cosuri mici sau eczeme este neplăcut și frustrant,
+            bijuteriile noastre sunt din oțel chirurgical, un metal anti-alergenic
+            care nu irită pielea. Oțelul chirurgical folosit este un oțel
+            biocompatibil care este perfect rezistent la fluidele corporale. Evită
+            alergiile și iritațiile.&lt;br /&gt;&lt;br /&gt;
+
+            Cum să curățați oțelul auriu? Apa cu săpun este o modalitate eficientă
+            de a curăța orice produs din oțel, atâta timp cât nu a fost puternic
+            oxidat. Înmuiați o cârpă în apă amestecată cu săpun de Marsilia, apoi
+            frecați-o pe suprafața de oțel. Nu uitați să uscați bine odată ce
+            curățarea se simte optimă.
+        &lt;/p&gt;</value>
+  </data>
+  <data name="about us" xml:space="preserve">
+    <value>&lt;h2&gt;Despre noi&lt;/h2&gt;
+    &lt;p&gt;
+        Noi oferim o gamă largă de bijuterii de înaltă calitate, potrivite
+        gusturilor și stilului dvs. Indiferent de ceea ce căutați, suntem siguri
+        că le veți purta. De la cele mai vândute colecții la articole în ediție
+        limitată, vă garantăm că veți profita la maximum de achiziția dvs. Este
+        întotdeauna un moment bun pentru a vă răsfăța cu ceva special pentru
+        dvs. sau cei dragi.
+    &lt;/p&gt;</value>
+  </data>
+  <data name="bijoux" xml:space="preserve">
+    <value>&lt;h2&gt;móft-bijuterii&lt;/h2&gt;
+        &lt;p&gt;
+            Meriți să te simți încrezător de îndată ce îți pui bijuteriile.
+            &lt;br /&gt;&lt;br /&gt;
+            Stilul nostru este un amestec sofisticat de eleganță atemporală și
+            design minimalist, cu o notă de lux. Vă oferim bijuterii pe care le
+            puteți coafa în fiecare zi - cu orice ținută, pentru orice ocazie.
+            &lt;br /&gt;&lt;br /&gt;
+            Clienții noștri sunt în centrul a tot ceea ce facem. Este angajamentul
+            nostru de a vă face fericit și de a continua să vă surprindem cu piese
+            care vă vor face să vă simțiți că sunteți la conducere. &lt;br /&gt;&lt;br /&gt;
+            Potențialul tău este motorul misiunii noastre! Bijuteriile noastre
+            sunt aici pentru a vă ajuta să vă dezlănțuiți puterea, să vă
+            împărtășiți povestea personală și să arătați lumii stilul dvs. unic.
+        &lt;/p&gt;</value>
+  </data>
+</root>
