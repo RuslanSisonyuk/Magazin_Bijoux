@@ -31,9 +31,15 @@
         font-family: 'Oranienbaum';
         font-size: 18px;
     }
+    a::selection {
+        color: #C08E9D;
+    }
+    a:hover{
+        cursor: pointer;
+    }
     
 </style>
-<div style="display:flex; flex-direction:row; justify-content: center; margin-top:30px; margin-bottom:30px;">
+<div style="display:flex; flex-direction:row; justify-content: center; margin-top:30px; margin-bottom:60px;">
     <div>
         <img id="image" src=@String.Format("/Product_img580x420/{0}_{1}.png", Model.imageURL, "1") />
     </div>
@@ -65,9 +71,9 @@
             </div>
         </div>
         <div class="fancy-font">
-            <p style="margin:0px">
+            <p style="margin:0px; margin-top:20px;">
                 Total:<br />
-                $<p id="total">@Model.price</p>
+                $<span id="total">@Model.price</span>
             </p>
         </div>
         <div>

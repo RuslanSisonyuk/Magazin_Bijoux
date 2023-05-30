@@ -10,39 +10,9 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/home.css" />
+    <link rel="stylesheet" href="~/css/Cart.css" />
 </head>
-<style>
-    @*a, p, h3 {
-        color: black;
-    }*@
-    .fancy-font {
-        color: black;
-        font-family: 'Oranienbaum';
-    }
-    .f-size {
-        font-size: 18px;
-    }
-    .small_cart_img {
-        width: 140px;
-        height: 160px;
-        border: 1px solid rgba(0,0,0,0.8);
-        box-shadow: 0px 3px rgba(0,0,0,0.1);
-    }
-    .product_link {
-        display: flex;
-        flex-direction: row;
-    }
-    a:active {
-        font-size: inherit;
-    }
-    input{
-        border:none;
-        text-decoration:none;
-        text-align:center;
-        background-color:aliceblue;
-        padding: 10px 20px; 
-    }
-</style>
+
 <h3 class="fancy-font">@localizer["my cart"]</h3>
 <div>
     @foreach (var item in Model)
@@ -50,7 +20,7 @@
         totalPrice += item.getTotalPrice();
         productList += item.quantity+" "+item.product.name+": $"+item.getTotalPrice()+"<br>";
         <hr />
-        <div style="display:flex; justify-content:space-between;">
+        <div id="cartitem-container">
             <a class="product_link" asp-controller="Products" asp-action="Product" asp-route-id="@item.product.id">
                     <img class="small_cart_img" src=@String.Format("/Product_img280x373/{0}.png", item.product.imageURL) />
                     <div style="margin-left: 17px; margin-top: 20px;"class="fancy-font f-size">
@@ -59,7 +29,7 @@
                     </div>
             </a>
             <div>
-                <div style="display:flex; flex-direction:row; margin-top: 40px;"class="fancy-font f-size">
+                <div id="cart-counter" class="fancy-font f-size">
                     <form asp-controller="CartItems" asp-action="RemoveFromCartAndReturn" asp-route-id="@item.productId">
                         <input type="hidden" name="action" value="Cart" />
                         <input type="hidden" name="controller" value="CartItems" />
@@ -68,7 +38,9 @@
                             <input type="submit" value="-" />
                         </div>
                     </form>
+
                     <p style="display: flex; align-items: center;">@Html.DisplayFor(modelItem => item.quantity)</p>
+
                     <form asp-controller="CartItems" asp-action="AddToCartAndReturn" asp-route-id="@item.productId">
                         <input type="hidden" name="action" value="Cart" />
                         <input type="hidden" name="controller" value="CartItems" />
